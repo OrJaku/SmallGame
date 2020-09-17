@@ -21,48 +21,59 @@ namespace SmallGame
                 string[] level = 
                 {
                 "##########",
-                "#  #######",
-                "#   ######",
-                "##   #####",
-                "##  ######",
-                "##     ###",
-                "##     ###",
-                "## #######",
-                "## #######",
-                "##       #"
+                "#  ###  ##",
+                "#   ### ##",
+                "##   ##  #",
+                "##  #### #",
+                "##     # #",
+                "##     # #",
+                "## ##### #",
+                "## ###   #",
+                "##       #",
+                "##########"
                 };
                 
             foreach(string row in level)
             {
                 Console.WriteLine(row);
             }
-            int positionRow = 3;
+            int positionRow = 2;
             int positionCol = 2;
+
             while(true)
             {
                 Console.SetCursorPosition(positionCol, positionRow);
                 Console.Write("@");
-                Console.SetCursorPosition(0, level.Length + 1);
+                Console.SetCursorPosition(0, level.Length);
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(positionCol, positionRow);
-                Console.Write(" ");      
+                string currentRow = level[positionRow];
+                char currentCol = currentRow[positionCol];
+                Console.Write(currentCol); 
+
+                int targetCol = positionCol; 
+                int targetRow = positionRow;
+
                 if(keyInfo.Key == ConsoleKey.LeftArrow)
                 {
-                    positionCol--;   
+                    targetCol = positionCol - 1;   
                 }
                 else if(keyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    positionCol++;  
+                    targetCol = positionCol + 1;  
                 }
                 else if(keyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    positionRow--;     
+                    targetRow = positionRow - 1;     
                 }
                 else if(keyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    positionRow++;     
+                    targetRow = positionRow + 1;     
                 }
+                positionCol = targetCol;
+                positionRow = targetRow;
             }
+
             Console.WriteLine ("  ");
             Console.WriteLine ("Press any key to quit");
             Console.ReadKey(true);
