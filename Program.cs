@@ -70,8 +70,14 @@ namespace SmallGame
                 {
                     targetRow = positionRow + 1;     
                 }
-                positionCol = targetCol;
-                positionRow = targetRow;
+                if (targetCol >= 0 && targetCol < level[positionCol].Length)
+                {
+                    positionCol = targetCol;
+                }
+                if (targetRow >= 0 && targetRow < level.Length)
+                {
+                    positionRow = targetRow;
+                }
             }
 
             Console.WriteLine ("  ");
