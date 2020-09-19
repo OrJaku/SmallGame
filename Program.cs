@@ -47,8 +47,7 @@ namespace SmallGame
                 Console.SetCursorPosition(0, level.Length);
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(positionCol, positionRow);
-                string currentRow = level[positionRow];
-                char currentCol = currentRow[positionCol];
+                char currentCol =  level[positionRow][positionCol];
                 Console.Write(currentCol); 
 
                 int targetCol = positionCol; 
@@ -70,11 +69,14 @@ namespace SmallGame
                 {
                     targetRow = positionRow + 1;     
                 }
-                if (targetCol >= 0 && targetCol < level[positionCol].Length)
+                else{
+                    break;
+                }
+                if (targetCol >= 0 && targetCol < level[positionCol].Length && level[positionRow][targetCol] != '#')
                 {
                     positionCol = targetCol;
                 }
-                if (targetRow >= 0 && targetRow < level.Length)
+                if (targetRow >= 0 && targetRow < level.Length && targetCol != currentCol && level[targetRow][positionCol] != '#')
                 {
                     positionRow = targetRow;
                 }
