@@ -18,13 +18,13 @@ namespace SmallGame
                 Console.WriteLine ("Hello " + username );
                 Console.WriteLine ("  ");
 
-                string[] level = 
+                string[] level_a = 
                 {
                 "#####################################################################   #",
                 "#   #               #               #           #                   #   #",
                 "#   #   #########   #   #####   #########   #####   #####   #####   #   #",
                 "#               #       #   #           #           #   #   #       #   #",
-                "#########   #   #########   #########   #####   #   #   #   #########   #",
+                "# #######   #   #########   #########   #####   #   #   #   #########   #",
                 "#       #   #               #           #   #   #   #   #           #   #",
                 "#   #   #############   #   #   #########   #####   #   #########   #   #",
                 "#   #               #   #   #       #           #           #       #   #",
@@ -34,7 +34,7 @@ namespace SmallGame
 
                 };
                 
-            foreach(string row in level)
+            foreach(string row in level_a)
             {
                 Console.WriteLine(row);
             }
@@ -45,10 +45,10 @@ namespace SmallGame
             {
                 Console.SetCursorPosition(positionCol, positionRow);
                 Console.Write("@");
-                Console.SetCursorPosition(0, level.Length);
+                Console.SetCursorPosition(0, level_a.Length);
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(positionCol, positionRow);
-                char currentCol =  level[positionRow][positionCol];
+                char currentCol =  level_a[positionRow][positionCol];
                 Console.Write(currentCol); 
 
                 int targetCol = positionCol; 
@@ -73,11 +73,11 @@ namespace SmallGame
                 else{
                     break;
                 }
-                if (targetCol >= 0 && targetCol < level[positionCol].Length && level[positionRow][targetCol] != '#')
+                if (targetCol >= 0 && targetCol < level_a[positionCol].Length && level_a[positionRow][targetCol] != '#')
                 {
                     positionCol = targetCol;
                 }
-                if (targetRow >= 0 && targetRow < level.Length && targetCol != currentCol && level[targetRow][positionCol] != '#')
+                if (targetRow >= 0 && targetRow < level_a.Length && targetCol != currentCol && level_a[targetRow][positionCol] != '#')
                 {
                     positionRow = targetRow;
                 }
