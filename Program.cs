@@ -12,15 +12,15 @@ namespace SmallGame
             string[] level_a = 
             {
             "#####################################################################   #",
-            "#   #               #               #           #                   #   #",
+            "#   #               #                  ##       #                   # ^ #",
             "#   #   #########   #   #####   #########   #####   #####   #####   #   #",
-            "#               #       #   #           #           #   #   #       #   #",
-            "# #######   #   #########   #########   #####   #   #   #   #########   #",
-            "#       #   #               #           #   #   #   #   #           #   #",
-            "#   #   #############   #   #   #########   #####   #   #########   #   #",
+            "#               #       #   # -         #           # - #   #       #   #",
+            "#  ######   #   #########   #########   #####   #   #   #   #########   #",
+            "#       #   #      -        #           #   #   #   #   #           #   #",
+            "#   #   #############   #   #   #########  -#####   #   #########   #   #",
             "#   #               #   #   #       #           #           #       #   #",
-            "#   #############   #####   #####   #   #####   #########   #   #####   #",
-            "#           #       #   #       #   #       #           #   #           #",
+            "#   #############   #####   #####       #####   #### ####   #   #####   #",
+            "#           #-      #   #       #   # -     #           #               #",
             "#########################################################################",
             };
             
@@ -28,11 +28,14 @@ namespace SmallGame
             {
                 Console.WriteLine(row);
             }
-            int positionRow = 3;
+            int positionRow = 2;
             int positionCol = 1;
-
+            int scores = 0;
             while(true)
             {
+                
+                Console.SetCursorPosition(0, level_a.Length + 1);
+                Console.Write("Score: " + scores);
                 Console.SetCursorPosition(positionCol, positionRow);
                 Console.Write("@");
                 Console.SetCursorPosition(0, level_a.Length-1);
@@ -43,6 +46,7 @@ namespace SmallGame
 
                 int targetCol = positionCol; 
                 int targetRow = positionRow;
+        
 
                 if(keyInfo.Key == ConsoleKey.LeftArrow)
                 {
@@ -64,7 +68,7 @@ namespace SmallGame
                     break;
                 }
 
-                if (targetCol > 0 && targetCol < level_a[0].Length - 1 && level_a[positionRow][targetCol] != '#')
+                if (targetCol > 0  && targetCol < level_a[0].Length - 1 && level_a[positionRow][targetCol] != '#')
                 {
                     positionCol = targetCol;
                 }
@@ -72,6 +76,18 @@ namespace SmallGame
                 {
                     positionRow = targetRow;
                 }
+                if (level_a[targetRow][positionCol] == '-' && level_a[positionRow][targetCol] == '-')
+                {
+                    scores ++;
+                    // Console.SetCursorPosition(positionCol, positionRow);
+                    // Console.Write("");
+                }
+
+                if (level_a[targetRow][positionCol] == '^' & level_a[positionRow][targetCol] == '^'){
+                    Console.SetCursorPosition(0, level_a.Length + 2);
+                    Console.WriteLine ("FINISH !!");
+                }
+
             }
 
             Console.WriteLine ("  ");
