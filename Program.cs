@@ -7,45 +7,35 @@ namespace SmallGame
         static void Main(string[] args)
         {
             Console.WriteLine ("Welcome!");
-            Console.WriteLine ("Write your name:");
-            string username = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(username))
-                {
-                    username = "Stranger";
-                    Console.WriteLine ("So you are" + username);
-                }
-                Console.Clear();
-                Console.WriteLine ("Hello " + username );
-                Console.WriteLine ("  ");
 
-                string[] level_a = 
-                {
-                "#####################################################################   #",
-                "#   #               #               #           #                   #   #",
-                "#   #   #########   #   #####   #########   #####   #####   #####   #   #",
-                "#               #       #   #           #           #   #   #       #   #",
-                "# #######   #   #########   #########   #####   #   #   #   #########   #",
-                "#       #   #               #           #   #   #   #   #           #   #",
-                "#   #   #############   #   #   #########   #####   #   #########   #   #",
-                "#   #               #   #   #       #           #           #       #   #",
-                "#   #############   #####   #####   #   #####   #########   #   #####   #",
-                "#           #       #   #       #   #       #           #   #           #",
-                "#########################################################################",
-
-                };
-                
+            Console.Clear();
+            string[] level_a = 
+            {
+            "#####################################################################   #",
+            "#   #               #               #           #                   #   #",
+            "#   #   #########   #   #####   #########   #####   #####   #####   #   #",
+            "#               #       #   #           #           #   #   #       #   #",
+            "# #######   #   #########   #########   #####   #   #   #   #########   #",
+            "#       #   #               #           #   #   #   #   #           #   #",
+            "#   #   #############   #   #   #########   #####   #   #########   #   #",
+            "#   #               #   #   #       #           #           #       #   #",
+            "#   #############   #####   #####   #   #####   #########   #   #####   #",
+            "#           #       #   #       #   #       #           #   #           #",
+            "#########################################################################",
+            };
+            
             foreach(string row in level_a)
             {
                 Console.WriteLine(row);
             }
-            int positionRow = 2;
-            int positionCol = 2;
+            int positionRow = 3;
+            int positionCol = 1;
 
             while(true)
             {
                 Console.SetCursorPosition(positionCol, positionRow);
                 Console.Write("@");
-                Console.SetCursorPosition(0, level_a.Length);
+                Console.SetCursorPosition(0, level_a.Length-1);
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(positionCol, positionRow);
                 char currentCol =  level_a[positionRow][positionCol];
@@ -73,11 +63,12 @@ namespace SmallGame
                 else{
                     break;
                 }
-                if (targetCol >= 0 && targetCol < level_a[positionCol].Length && level_a[positionRow][targetCol] != '#')
+
+                if (targetCol > 0 && targetCol < level_a[0].Length - 1 && level_a[positionRow][targetCol] != '#')
                 {
                     positionCol = targetCol;
                 }
-                if (targetRow >= 0 && targetRow < level_a.Length && targetCol != currentCol && level_a[targetRow][positionCol] != '#')
+                if (targetRow > 0 && targetRow < level_a.Length - 1 && level_a[targetRow][positionCol] != '#')
                 {
                     positionRow = targetRow;
                 }
